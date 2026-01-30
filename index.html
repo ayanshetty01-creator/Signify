@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EaseTranslate — Sign Language Translation</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="title-bubble">EaseTranslate</div>
+  </header>
+
+  <div class="container">
+    <aside id="sidebar" class="sidebar closed">
+      <button id="toggleSidebar" class="toggle-btn" aria-label="Toggle sidebar">☰</button>
+
+      <div class="sidebar-content">
+        <h2>Actions</h2>
+
+        <div class="btn-group">
+          <button class="side-btn" data-label="HELLO" id="record-HELLO">Record HELLO</button>
+          <button class="side-btn" data-label="YES" id="record-YES">Record YES</button>
+          <button class="side-btn" data-label="NO" id="record-NO">Record NO</button>
+          <button class="side-btn" data-label="THANK YOU" id="record-THANK YOU">Record THANK YOU</button>
+          <button class="side-btn" data-label="HELP" id="record-HELP">Record HELP</button>
+
+          <hr>
+
+          <button class="side-btn" id="trainBtn">Train Model</button>
+          <button class="side-btn" id="startDetect">Start Detecting</button>
+
+          <div class="save-load">
+            <button class="side-btn" id="saveModel">Save Model</button>
+            <label class="side-btn file-label">
+              Load Model
+              <input type="file" id="modelFiles" accept=".json,.bin" multiple style="display:none">
+            </label>
+          </div>
+        </div>
+
+        <div class="status-box" id="sidebarStatus">
+          <strong>Status</strong>
+          <div id="statusText">Idle</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <div class="main-content">
+        <div class="video-col">
+          <div class="camera-wrap">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="overlay"></canvas>
+          </div>
+
+          <div class="detection-box">
+            <div id="detectedLabel" class="detected-label">Detected: —</div>
+            <div id="confidence" class="confidence">Confidence: —</div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="instructions">
+            <h3>How to use</h3>
+            <ol>
+              <li>Open the sidebar (☰) and click a Record button.</li>
+              <li>Perform the sign in front of the camera for ~2 seconds.</li>
+              <li>Record 15–30 samples for each sign (better accuracy).</li>
+              <li>Click <strong>Train Model</strong>, then <strong>Start Detecting</strong>.</li>
+              <li>Save the model before refreshing the page.</li>
+            </ol>
+          </div>
+
+          <div class="mockup-preview">
+            <h4>Mockup (for your portfolio)</h4>
+            <img id="mockupImage" src="/mnt/data/A_digital_screenshot_of_a_web_application_interfac.png" alt="UI mockup preview" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <small>Built for TSA — Software Development: EaseTranslate</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
